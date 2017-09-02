@@ -29,10 +29,10 @@ if(Jogadores[0].dano == Jogadores[1].dano){
 	printf("Empate\n");
 }else{
 if(Jogadores[0].dano < Jogadores[1].dano)
-	printf("May: \n");
+	printf("May: Se você tivesse beleza o que tem de derrota!\n");
 else{
 if(Jogadores[0].dano > Jogadores[1].dano)
-	printf("James: \n");
+	printf("James: Eliminar a esperança é a nossa arte!\n");
 }
 }
 	return 0;
