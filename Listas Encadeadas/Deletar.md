@@ -1,4 +1,0 @@
-
-  # Vai estudar
-  
-  > caramba
