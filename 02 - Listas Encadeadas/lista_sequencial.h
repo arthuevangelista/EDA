@@ -5,6 +5,7 @@
 /* Matrícula: 140016686						    */
 /* ---------------------------------------------*/
 
+#define MAX_NOME 30
 
 struct registro{
 	int matricula;
@@ -25,6 +26,8 @@ int IU(Lista* li, struct registro aluno);
 
 int IM(Lista* li, struct registro aluno);
 
-int IN(Lista* li, struct registro aluno)
+int IN(Lista* li, struct registro aluno);
 
 int EX(Lista* li, struct registro aluno);
+
+void imprimir_na_ordem(Lista* li);

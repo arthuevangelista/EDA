@@ -67,7 +67,7 @@ int IU(Lista* li, struct registro aluno){
 		return 0; /*A lista não foi criada ainda*/
 	if(lista_cheia(li))
 		return 0; /*A lista está cheia e não é possível inserir alunos*/
-	li->dados[li->qtd] = al; /*Insere o aluno al na lista turma na posição qtd (posição atual)*/
+	li->turma[li->qtd] = aluno; /*Insere o aluno al na lista turma na posição qtd (posição atual)*/
 /*Lembrando que esta função adiciona alunos no final da lista para que seja possível exibir em ordem de inserção*/
 	li->qtd++; /*Incrementa a posição da lista*/
 	return 1; /*A inserção foi um sucesso e o programa pode prosseguir*/
@@ -86,7 +86,7 @@ int IM(Lista* li, struct registro aluno){
 /*Este while procura na lista em que posição está a matrícula maior ou igual à matricula a ser inserida*/
 	for(k = li->qtd-1; k >= i; k--)
 		li->turma[k+1] = li->turma[k]; /*move todos os dados posteriores em uma posição para inserir o aluno na posição i*/
-	li->turma[i] = al;
+	li->turma[i] = aluno;
 	li->qtd++; /*Incrementa a posição da lista*/
 	return 1; /*A inserção foi um sucesso e o programa pode prosseguir*/
 }
@@ -103,9 +103,11 @@ int IN(Lista* li, struct registro aluno){
 		return 0;
 	while((i < li->qtd) && (li->turma[i].nome[0] < aluno.nome[0]))
 		i++;
+	if(li->turma[i].nome[0] == aluno.nome[0])
+		i++;
 	for(k = li->qtd-1; k >= i; k--)
 		li->turma[k+1] = li->turma[k];
-	li->turma[i] = al;
+	li->turma[i] = aluno;
 	li->qtd++; /*Incrementa a posição da lista*/
 	return 1; /*A inserção foi um sucesso e o programa pode prosseguir*/
 }
@@ -132,13 +134,24 @@ int EX(Lista* li, struct registro aluno){
 
 }
 
+/*	IMPRESSÃO	*/
+void imprimir_na_ordem(Lista* li){
+/*Apenas imprime os alunos na ordem em que foram mantidos no momento da inserção (seja por IU, IM ou IN)*/
+	int i;
+	printf("\n");
+	for(i = 0; i < li->qtd; i++)
+		printf("%s, %d; ", li->turma[i].nome, li->turma[i].matricula);
+	getchar();
+	getchar();
+}
+
 /*PROGRAMA PRINCIPAL*/
 int main(){
 	int interacoes = 0;
 	char codigo[2];
 	int operador; /*Operador recebe o retorno das funções IU, IM, IN e EX. Dependendo de seu valor, as mensagens ENTRADA INVÁLIDA ou BASE VAZIA serão exibidas*/
 	Lista* li_sequencial; /*Declarada a lista sequencial*/
-	registro tempBuffer; /*Registro temporário do nome e da matricula*/
+	struct registro tempBuffer; /*Registro temporário do nome e da matricula*/
 
 	/*Chama função que cria a lista*/
 	li_sequencial = cria_lista(); /*recebe a lista alocada dinamicamente na função*/
@@ -167,6 +180,7 @@ int main(){
 						getchar();
 						getchar();
 					}
+					imprimir_na_ordem(li_sequencial);
 					interacoes++;
 					break;
 				case 'M':
@@ -176,6 +190,7 @@ int main(){
 						getchar();
 						getchar();
 					}
+					imprimir_na_ordem(li_sequencial);
 					interacoes++;
 					break;
 				case 'N':
@@ -185,6 +200,7 @@ int main(){
 						getchar();
 						getchar();
 					}
+					imprimir_na_ordem(li_sequencial);
 					interacoes++;
 					break;
 				default:
@@ -192,24 +208,26 @@ int main(){
 			}/*fim switch*/
 		}else{
 			if(codigo[0] == 'E'){
-				printf("Opção EX");
 				operador = EX(li_sequencial, tempBuffer);
 				if(operador == 0){
 					printf("\nENTRADA INVÁLIDA.\nPressione qualquer tecla para continuar: ");
 					getchar();
 					getchar();
+					continue;
 				}
 				operador = lista_vazia(li_sequencial);
 				if(operador == 1){
 					printf("\nBASE VAZIA.\nPressione qualquer tecla para continuar: ");
 					getchar();
 					getchar();
+					continue;
 				}
+				imprimir_na_ordem(li_sequencial);
 				interacoes++;
-			}else{
-				printf("Opção inválida!\n");
-				getchar();
-				getchar();
+				}else{
+					printf("Opção inválida!\n");
+					getchar();
+					getchar();
 			}/*fim if-else 'EX'*/
 		}/*fim if-else 'IU IM IN'*/
 
