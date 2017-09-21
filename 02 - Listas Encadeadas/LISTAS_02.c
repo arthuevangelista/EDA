@@ -3,7 +3,7 @@
 #include<string.h>
 
 #define MAX_NOME 30
-#define MAX_INTERACOES 3
+#define MAX_INTERACOES 5
 
 /*===================================================*/
 /*        Aluno: Arthur Evangelista dos Santos		 */
@@ -65,8 +65,9 @@ void IU(Cab* l, struct aluno novo){
 /*				OPERAÇÃO IM				*/
 void IM(Cab* l, struct aluno novo){
 	struct aluno* no = (struct aluno*)malloc(sizeof(struct aluno*));
+	int i = 0;
 
-	struct aluno* anterior;
+	struct aluno* anterior = l->primeiro;
 	struct aluno* atual = l->primeiro;
 
 	no->matricula = novo.matricula;
@@ -78,19 +79,27 @@ void IM(Cab* l, struct aluno novo){
 		l->primeiro = l->ultimo = no;
 		l->qtd++;
 	}else{
-			printf("\nentrei ifelse");
-		while(atual->matricula < novo.matricula){
-			printf("entrei while");
-			anterior = atual;
-			atual = atual->proximo;
+
+		if(no->matricula < l->primeiro->matricula){
+			no->proximo = atual;
+			l->primeiro = no;
+			l->qtd++;
 		}
+
+
+		while((i < l->qtd) && (atual->matricula < no->matricula)){
+				printf("\nentrei while");
+				anterior = atual;
+				atual = atual->proximo;
+				i++;
+			}
 		if(atual == NULL){
-			printf("entrei if");
-			no->proximo = l->ultimo->proximo;
+			printf("\nentrei if");
+			no->proximo = anterior->proximo;
 			anterior->proximo = l->ultimo = no;
 			l->qtd++;
 		}else{
-			printf("entrei else");
+			printf("\nentrei else");
 			no->proximo = anterior->proximo;
 			anterior->proximo = no;
 			l->qtd++;
