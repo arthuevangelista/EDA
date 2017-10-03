@@ -53,11 +53,32 @@ void exibe(int L[N][N]){
 void anota(int L[N][N]){
 	L[1][1] = 1;
 	Fila* fi; int op;
+	int i, j; int c;
 	fi = cria_fila();
 
-	while(!(fila_vazia(fi))){
-		
-	}
+/* Passa a matriz L para a Fila fi */
+	for(i = 0; i < N; i++)
+		for(j = 0; j < N; j++)
+			op = insere_fila(fi, (L[i][j]));
+/* Fim do loop */
+
+/* Algoritmo de repetição do item 3 */
+	if(!(fila_vazia(fi))){
+		for(i = 1; i < N; i++){
+			for(j = 1; j < N; j++){
+				op = remove_fila(fi);
+				c = L[i][j] + 1;
+
+/* 	FALTA IMPLEMENTAR AQUI:
+
+3.3 Para cada posição (x,y) vizinha de (i,j) tal que L[x][y]==0 faça:
+3.3.1 Armazene o valor c em L[x][y];
+3.3.2 Insira a posição (x,y) na fila F.
+*/
+
+			}
+		} /* fim do loop */
+	} /* fim do if-else*/
 
 libera_fila(fi);
 }

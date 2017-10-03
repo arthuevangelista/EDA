@@ -1,11 +1,11 @@
 #include<stdio.h>
 #include<stdlib.h>
-#define M 22 // Altere de acordo com o exercício
-#define N 21 // Altere de acordo com o exercício
+#define A 22 // Altere de acordo com o exercício
+#define B 21 // Altere de acordo com o exercício
 
 struct fila{
 	int init, jnit, fim, jim, qtd;
-	int dados[M][M];
+	int dados[A][A];
 };
 
 typedef struct fila Fila;
@@ -42,22 +42,22 @@ int fila_vazia(Fila* fi){
 
 /* Verifica a quantidade de itens na fila*/
 int fila_qtd(Fila* fi){
+int qtd;
 	if(fi != NULL)
-		int qtd = fi->qtd;
+		qtd = fi->qtd;
 	return qtd;
 }
 
 /* Verifica se a fila está cheia*/
 int fila_cheia(Fila* fi){
 	if(fi != NULL){
-		if(fi->qtd == (N*N)){
+		if(fi->qtd == (B*B)){
 			return 1; // 1 para cheia
 		}else{
 			return 0;
 		}
 	}
 }
-
 
 /* Inserção em filas é sempre realizado no fim da fila. Também existe o caso da fila estar vazia e ser necessário realizar uma inserção. OBS.: Devemos verificar se a fila está cheia antes de inserir elementos */
 
@@ -68,9 +68,9 @@ int insere_fila(Fila* fi, int dados){
 		}
 		fi->dados[fi->fim][fi->jim] = dados;
 		fi->fim++;
-		if(fi->fim == N){
+		if(fi->fim == B){
 			fi->fim = 1;
-			fi=>jim++;
+			fi->jim++;
 		}
 		fi->qtd++;
 		return 1;
@@ -84,11 +84,10 @@ int remove_fila(Fila* fi){
 		if(!(fila_vazia(fi))){
 			return 0;
 		}
-		fi->dados[fi->fim][fi->jim] = dados;
 		fi->fim--;
 		if(fi->fim == 1){
-			fi->fim = N;
-			fi=>jim--;
+			fi->fim = B;
+			fi->jim--;
 		}
 		fi->qtd--;
 		return 1;
