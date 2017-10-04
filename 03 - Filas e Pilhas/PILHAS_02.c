@@ -2,7 +2,7 @@
 #include<stdlib.h>
 #include<string.h>
 
-#include"pilhaEstatica.h"
+//#include"pilhaEstatica.h"
 
 #define MAX_STRING 100
 
@@ -12,8 +12,8 @@ char * infixaParaPosfixa ( char inf[]) {
 	char *pi; int topo; // pilha
 	int N, i, j;
 	N = strlen(inf);
-	posf = mallocc( N * sizeof (char));
-	pi = mallocc( N * sizeof (char));
+	posf = malloc( N * sizeof (char));
+	pi = malloc( N * sizeof (char));
 	topo = 0;
 	pi[topo++] = inf[0]; // insere o primeiro parenteses na pilha
 	for (j = 0, i = 1; /*PP*/ inf[i] != '\0'; ++i) {
@@ -64,6 +64,23 @@ char * infixaParaPosfixa ( char inf[]) {
 			return posf;
 }// fim func infixaParaPosfixa
 
+int resolve(char* posfixa){
+	int resultado;
+	int pilhaValores[strlen(posfixa)];
+	char pilhaSinais[strlen(posfixa)];
+	char c;
+	int i=0;
+
+	while(c != NULL){
+		c = posfixa[i];
+		switch (c){
+			case '+':
+				resultado = 
+
+		}
+	}
+}
+
 void ler_nome(char *s){
 // Função ler o nome
     char c;
@@ -84,10 +101,10 @@ int main(){
 	char* posfixa;
 
 	printf("Insira uma expressão matemática: \n");
-	lerString(s);
+	ler_nome(s);
 
 	posfixa = infixaParaPosfixa(s);
-
+	printf("%s\n", posfixa);
 
 
 	return 0;
