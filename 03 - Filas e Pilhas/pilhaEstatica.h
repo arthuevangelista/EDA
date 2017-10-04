@@ -1,34 +1,72 @@
 #include<stdio.h>
 #include<stdlib.h>
+#define M 6
 
-Pilha* cria_pilha();
+struct pilha{
+	int init, final, qtd;
+	int dados[M];
+};
 
-/* Inserção em pilhas é sempre realizado no início da pilha. Também existe o caso da pilha estar vazia e ser necessário realizar uma inserção. OBS.: Devemos verificar se a pilha está cheia antes de inserir elementos */
+typedef struct pilha Pilha;
 
-int insere_pilha(Pilha* pi, int dados);
+Pilha* cria_pilha(){
+/* Cria a pilha Estática*/
 
-/* Remoção em pilhas é sempre realizado no início da pilha. OBS.: Não se pode remover de uma pilha vazia! Devemos verificar antes se a pilha está vazia */
-
-int remove_pilha(Pilha* pi, int dados);
-
-/* Exercício 1 USP
-
-1_ Se a posição ocupada pela pilha é de 0 a t, então a próxima posição vaga será t+1. Logo, a função insere_pilha será:
-
-int empilha(Pilha* pi, DADO A SER INSERIDO){
+	Pilha *pi  = (Pilha*)malloc(sizeof(struct pilha));
 	if(pi != NULL){
-		if(pilha_cheia(pi)) return 0;
-		pi->dados[pi->t++] = dados;
-		pi->t = (pi->t  + 1) % M;
-		pi->qtd++;
+		pi->t = 0; // pi->t = pi->topo
+		pi->init = 0;
+		pi->qtd = 0;
+	}
+	return pi;
+}
+
+void libera_pilha(Pilha* pi){
+/* Destrói a pilha Estática*/
+	free(pi);
+}
+
+int pilha_vazia(Pilha* pi){
+/* Verifica se a pilha está vazia*/
+	if(pi != NULL){
+		if(pi->qtd == 0){
+			printf("Pilha vazia!\n");
+			getchar();
+			getchar();
+			return 1;
+		}else{
+			return 0;
+		}
 	}
 }
 
-2_
+void pilha_qtd(Pilha* pi){
+/* Verifica a quantidade de itens na pilha*/
+	if(pi != NULL)
+		printf("A quantidade de elementos da pilha é %d\n", pi->qtd);
+}
+
+int pilha_cheia(Pilha* pi){
+/* Verifica se a pilha está cheia*/
+	if(pi != NULL){
+		if(pi->qtd == N){
+			printf("Pilha cheia!\n");
+			getchar();
+			getchar();
+			return 1;
+		}else{
+			return 0;
+		}
+	}
+}
+
+/* Inserção em pilhas é sempre realizado no início da pilha. Também existe o caso da pilha estar vazia e ser necessário realizar uma inserção. OBS.: Devemos verificar se a pilha está cheia antes de inserir elementos */
 
 int empilha(Pilha* pi, int dados){
 	if(pi != NULL){
-		if(pilha_cheia(pi)) return 0;
+		if(pilha_cheia(pi)){
+			return 0;
+		}
 		pi->dados[pi->t] = dados;
 		pi->t = (pi->t  + 1) % M;
 		pi->qtd++;
@@ -36,22 +74,25 @@ int empilha(Pilha* pi, int dados){
 	}
 }
 
+/* Remoção em pilhas é sempre realizado no início da pilha. OBS.: Não se pode remover de uma pilha vazia! Devemos verificar antes se a pilha está vazia */
+
 int desempilha(Pilha* pi){
 	if(pi != NULL){
-		if(pilha_vazia(pi)) return 0;
+		if(pilha_vazia(pi)){
+			return 0;
+		}
 		pi->t = (pi->t  + 1) % M;
 		pi->qtd--;
 		return 1;
 	}
 }
 
-*/
+void imprimir_pilha(Pilha* pi){
+/* Função imprimir pilha */
+	int i = pi->t;
 
-
-/* Exercícios 2 USP
-
-
-
-1_ 
-
-*/
+	while(i != pi->init){
+		printf("Posição = %d, Item = %d\n", i, pi->dados[i]);
+		i = (i-1)%M;
+	}
+}
