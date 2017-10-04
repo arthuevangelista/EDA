@@ -2,30 +2,13 @@
 #include<stdlib.h>
 #include<string.h>
 #include"pilhaEstatica.h"
-#include"filaEstatica.h"
 
 #define MAX_BASES 300
 
-struct fila{
-	int init, fim, qtd;
-	int rnaa[MAX_BASES];
-};
-
-typedef struct fila Fila;
-
-Fila* cria_fila(){
-/* Cria a fila Estática*/
-	Fila *fi  = (Fila*)malloc(sizeof(struct fila));
-	if(fi != NULL){
-		fi->init = 1;
-		fi->fim = 1;
-		fi->qtd = 0;
-	}
-	return fi;
-}
-
 void pares(Fila* fi){
-  switch(fi->fim){
+
+
+/*  switch(fi->fim){
     case 'B':
       // par será S
       break;
@@ -41,14 +24,16 @@ void pares(Fila* fi){
     default:
       // caso inválido
   }
+*/
 
-}
+// conta o número de bases
+// divide no meio
+// realiza o pareamento
 
-//
+// se não for par,
+
 int main(){
-  Fila* fi;
-  fi = cria_fila();
+  char*
 
-  free(fi);
   return 0;
 }
