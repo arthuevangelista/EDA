@@ -27,7 +27,8 @@ int main(){
   ler_nome(s);
 
   N = strlen(s);
-  char* pilha = malloc(N*sizeof(char)); // Cria uma pilha do tamanho do vetor S
+  char* pilha;
+  pilha = malloc( N * sizeof (char)); // Cria uma pilha do tamanho do vetor S
   t = 0;
 
   for(i = 0; i < N; i++){
@@ -53,7 +54,7 @@ int main(){
 
 void verifica(char* pilha, char* aux, int* topp, int* t, int* cont){
 
-  while(*t != 1){
+  while(*t != 0){
     switch(pilha[*t]){
       case 'B':
         if(aux[*topp] == 'S'){
@@ -107,9 +108,11 @@ void dobra(char* pilha, int* t, int* contagem){
   }
 
   topp = 0;
-  char* aux = malloc( (M/2) * sizeof(char));
+  M /= 2; // Pega só metade da pilha
+  char* aux;
+  aux = malloc( M * sizeof(char));
 
-  for(i = M; i != (M/2); i--){
+  for(i = M; i != M; i--){
     aux[topp++] = pilha[i]; // Empilha os valores de cima da pilha para aux
     pilha[--*t]; // desempilha i
   }
