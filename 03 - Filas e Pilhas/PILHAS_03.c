@@ -32,8 +32,42 @@ void pares(Fila* fi){
 
 // se não for par,
 
+void ler_nome(char *s){
+// Função ler o nome
+    char c;
+    //int i;
+    c = getchar();
+    while(c!='\n'){
+        *s = c;
+        c=getchar();
+        s++;
+     //   i++;
+    }
+}
+
 int main(){
-  char*
+  char s[MAX_BASES];
+  int i, topo;
+  int N;
+
+  printf("Insira as bases do RNAA: \n");
+  ler_nome(s);
+
+  N = strlen(s);
+  char* pilha = malloc(N*sizeof(char)); // Cria uma pilha do tamanho do vetor S
+  topo = 0;
+
+  for(i = 0; i < N; i++){
+    pilha[topo++] = s[i]; // Insere o vetor S na pilha
+  }
+
+  if(N%2 != 0){
+    pilha[--topo];
+  }
+
+  for(i = 0){
+    char* pilha = malloc( (N/2) * sizeof(char));
+  }
 
   return 0;
 }
