@@ -62,7 +62,7 @@ int main(){
   }
 
   if(N%2 != 0){
-    pilha[--topo];
+    pilha[--topo]; // Verifica se é ímpar. Se for, retira o último item da pilha
   }
 
   for(i = 0){
