@@ -2,8 +2,6 @@
 #include<stdlib.h>
 #include<string.h>
 
-//#include"pilhaEstatica.h"
-
 #define MAX_STRING 100
 
 char * infixaParaPosfixa ( char inf[]) {
@@ -66,31 +64,46 @@ char * infixaParaPosfixa ( char inf[]) {
 
 int resolve(char* posfixa){
 	int resultado;
-	int pilhaValores[strlen(posfixa)];
-	char pilhaSinais[strlen(posfixa)];
+	int pilha[strlen(posfixa)], topo=0;
 	char c;
 	int i=0;
 
-	while(c != NULL){
-		c = posfixa[i];
+	while(c != '\0'){
+		c = posfixa[i++];
 		switch (c){
 			case '+':
-				resultado = 
-
+				resultado = pilha[--topo] + pilha[--topo];
+				pilha[topo++] = resultado;
+				break;
+			case '-':
+				resultado = pilha[topo -2] - pilha[--topo];
+				topo--;
+				pilha[topo++] = resultado;
+				break;
+			case '*':
+				resultado = pilha[--topo] * pilha[--topo];
+				pilha[topo++] = resultado;
+				break;
+			case '/':
+				resultado = pilha[topo -2] / pilha[--topo];
+				topo--;
+				pilha[topo++] = resultado;
+				break;
+			default:
+				pilha[topo++] = c - '0';
 		}
 	}
+	return resultado;
 }
 
 void ler_nome(char *s){
 // Função ler o nome
     char c;
-    //int i;
     c = getchar();
     while(c!='\n'){
         *s = c;
         c=getchar();
         s++;
-     //   i++;
     }
 }
 
@@ -99,12 +112,15 @@ void ler_nome(char *s){
 int main(){
 	char s[MAX_STRING];
 	char* posfixa;
+	int result;
 
 	printf("Insira uma expressão matemática: \n");
 	ler_nome(s);
 
 	posfixa = infixaParaPosfixa(s);
 	printf("%s\n", posfixa);
+	result = resolve(posfixa);
+	printf("Resultado: %d\n\n",result);
 
 
 	return 0;
