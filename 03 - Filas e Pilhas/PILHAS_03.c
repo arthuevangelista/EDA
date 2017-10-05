@@ -1,12 +1,8 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-#include"pilhaEstatica.h"
 
 #define MAX_BASES 300
-
-void pares(Fila* fi){
-
 
 /*  switch(fi->fim){
     case 'B':
@@ -32,6 +28,21 @@ void pares(Fila* fi){
 
 // se não for par,
 
+void dobra(char* pilha){
+  int M; int i;
+  M = strlen(pilha);
+  int topp, t;
+
+  topp = 0; t = M;
+  char* aux = malloc( (M/2) * sizeof(char));
+
+  for(i = M; i != (M/2); i--){
+    aux[topp++] = pilha[i]; // Empilha os valores de cima da pilha para aux
+    pilha[--t]; // desempilha i
+  }
+
+}
+
 void ler_nome(char *s){
 // Função ler o nome
     char c;
@@ -55,19 +66,18 @@ int main(){
 
   N = strlen(s);
   char* pilha = malloc(N*sizeof(char)); // Cria uma pilha do tamanho do vetor S
-  topo = 0;
+  t = 0;
 
   for(i = 0; i < N; i++){
-    pilha[topo++] = s[i]; // Insere o vetor S na pilha
+    pilha[t++] = s[i]; // Insere o vetor S na pilha
   }
 
   if(N%2 != 0){
-    pilha[--topo]; // Verifica se é ímpar. Se for, retira o último item da pilha
+    pilha[--t]; // Verifica se é ímpar. Se for, retira o último item da pilha
   }
 
-  for(i = 0){
-    char* pilha = malloc( (N/2) * sizeof(char));
-  }
+printf("%d", N);
+
 
   return 0;
 }
