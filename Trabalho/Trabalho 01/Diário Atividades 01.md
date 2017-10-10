@@ -35,6 +35,8 @@ EDA - 2.2017
 			5. *Posição final da memória*;
 	* __FINAL__: "*Caberá ao aluno definir estratégias para inserir processos na memória e realocar processos na memória*".
 
+
+
 * __Checklist de Requisitos__
     - [ ] Implementar lista circular duplamente encadeada com cabeçalho
     - [ ] Modularizar lista implementada
