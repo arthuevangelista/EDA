@@ -2,6 +2,7 @@ EDA - 2.2017
 
 * __Diário de Atividades 01 (08/10/2017)__
   * Grupo:
+    * @arthuevangelista
   	* @rafaelmakaha
 	* (Inserir referência ao git do) renan
   * Leitura do roteiro do projeto;
