@@ -2,16 +2,13 @@
 #include<stdlib.h>
 
 // Protótipo de função
-void salva_arquivo();
+void salva_arquivo(Cab* l, Processo* lista);
 
 // Protótipo de função
-FILE* carrega_arquivo();
+void carrega_arquivo(Cab* l, Processo* lista);
 
 void salva_arquivo(Cab* l, Processo* lista){
 /* Função para salvar o arquivo */
-/* O retorno da função é um arquivo com os parametros de entrada de cada nó
-(LABEL, tamanho e DURACAO). No momento de abertura do arquivo, estes parametros
-serão carregados para a lista encadeada utilizando a função carrega_arquivo */
 
   FILE* f;
   int op;
@@ -31,7 +28,7 @@ serão carregados para a lista encadeada utilizando a função carrega_arquivo *
     fprintf(f, "%d", l->mem_total);
     fputc('\n', f);
     /* Na SEGUNDA e demais linhas: LABEL, tamanho e duração*/
-    Lista* aux;
+    Processo* aux;
     aux = l->ini;
 
     /* Grava o primeiro item da lista */
@@ -69,3 +66,50 @@ serão carregados para a lista encadeada utilizando a função carrega_arquivo *
   }
 
 }/* fim do salva_arquivo */
+
+void carrega_arquivo(Cab* l, Processo* lista){
+/* Função para carregar o arquivo */
+
+  FILE* f;
+  int op;
+
+  f = fopen("simulacao.txt","r"); // lê na mesma pasta que o prog principal
+
+  if(f == NULL){
+    /* Verifica se ocorreu falha ao ler o arquivo */
+    printf("Erro ao ler arquivo!\n");
+    getchar();
+    getchar();
+  }else{
+    int i;
+
+    /* Caso tenha dado certo ler o arquivo carrega:
+    Na PRIMEIRA LINHA: Cab */
+    fscanf(f, "%d", &l->mem_total); // lê até que seja dado o \n
+    /* Na SEGUNDA e demais linhas: LABEL, tamanho e duração*/
+    Processo* aux;
+    aux = l->ini;
+
+    /* Grava os itens da lista */
+    while (i != EOF) {
+      fscanf(f, "%s %d %d", aux->LABEL, &aux->tam, &aux->DURACAO);
+      // funcao_inserir(Processo* lista, aux->LABEL, aux->tam, aux->DURACAO);
+
+      /* Para este protótipo, será inserido um novo nó no Processo* lista com os
+       itens LABEL, tamanho e DURACAO como se estivessem sendo adicionados por
+       um usuário */
+      i = fgetc(f); // recebe item i do arquivo
+      i++; // anda no arquivo
+    } /*fim do while*/
+  }
+
+
+/* ao final, fecha o arquivo */
+  op = fclose(f);
+  if(op){
+    printf("Dados carregados com sucesso!\n");
+    getchar();
+    getchar();
+  }
+
+}/* fim do carrega_arquivo */
