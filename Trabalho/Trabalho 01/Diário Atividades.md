@@ -1,10 +1,10 @@
 EDA - 2.2017
 
-* __Diário de Atividades 01 (08/10/2017)__
+* __Diário de Atividades__
   * Grupo:
     * @arthuevangelista
-  	* @rafaelmakaha
-	* (Inserir referência ao git do) renan
+    * @rafaelmakaha
+    * @renanschadt
   * Leitura do roteiro do projeto;
   * Realizada listagem de requisitos;
   * Criado __Checklist de Requisitos__ a serem atendidos. *Os itens ainda não atendidos serão implementados de acordo com o andamento do projeto e estarão no início de cada __Diário de Atividades__*
