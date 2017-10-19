@@ -53,11 +53,40 @@ int consulta(arv* a, char c){
     return a->info == c || consulta(a->esq, c) || consulta(a->dir, c);
 }
 
-void imprimir(arv* a){
+void imprimirPreOrdem(arv* a){
+/* Imprime itens de uma árvore binária pré-definida em pré-ordem.*/
   if(!arv_vazia){
     printf("%c ",a->info);
-    imprimir(a->esq);
-    imprimir(a->dir);
+    imprimirPreOrdem(a->esq);
+    imprimirPreOrdem(a->dir);
+  }
+}
+
+void imprimirEmOrdem(arv* a){
+  /* Imprime itens de uma árvore binária pré-definida em ordem.*/
+  if(!arv_vazia){
+    imprimirEmOrdem(a->esq);
+    printf("%c ",a->info);
+    imprimirEmOrdem(a->dir);
+  }
+}
+
+void imprimirPolonesa(arv* a){
+  /* Imprime itens de uma árvore binária pré-definida em pós-ordem.
+  Esta impresão também é conhecida como notação Polonesa*/
+  if(!arv_vazia){
+    imprimirPolonesa(a->esq);
+    imprimirPolonesa(a->dir);
+    printf("%c ",a->info);
+  }
+}
+
+void imprimirLargura(arv* a){
+  /* Imprime itens de uma árvore binária pré-definida em largura. */
+  if(!arv_vazia){
+    imprimirLargura(a->esq);
+    imprimirLargura(a->dir);
+    printf("%c ",a->info);
   }
 }
 
@@ -66,7 +95,16 @@ int main(){
   int opcao = 1;
 
   while(opcao){
-    //menu
+
+    printf("\t\t>> MENU <<\n\n");
+    printf("0 - SAIR\n");
+    printf("1 - Inserir arvore(pre definida)\n");
+    printf("2 - Destrói árvore\n");
+    printf("3 - Busca\n");
+    printf("4 - Impressão\n");
+    printf("5 - Impressão em largura\n");
+    printf("\t\t\t\tOPÇÃO: ");
+
     switch(opcao){
       case 1:
         if(arv_vazia(a)){
