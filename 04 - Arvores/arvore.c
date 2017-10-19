@@ -81,13 +81,19 @@ void imprimirPolonesa(arv* a){
   }
 }
 
-void imprimirLargura(arv* a){
-  /* Imprime itens de uma árvore binária pré-definida em largura. */
+void imprimirLargura(char* fila, arv* a){
+  /* Imprime itens de uma árvore binária pré-definida em largura.
+  Insere os nós da árvore em uma fila e vai imprimindo elas de acordo. */
   if(!arv_vazia){
+    fila = a->info;
     imprimirLargura(a->esq);
     imprimirLargura(a->dir);
     printf("%c ",a->info);
   }
+}
+
+void insereFila(){
+
 }
 
 int main(){
